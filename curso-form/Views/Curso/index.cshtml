@@ -1,0 +1,68 @@
+@model curso_form.Models.Curso
+
+@{
+    ViewData["Title"] = "Crear Nuevo Curso";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-controller="Curso" asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Nombre">Nombre del Curso:</label>
+        <input asp-for="Nombre" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label asp-for="Categoria">Categoría:</label>
+        <select asp-for="Categoria" class="form-control" required>
+            <option value="">Seleccionar Categoría</option>
+            <option value="sistemas">Sistemas</option>
+            <option value="ingenieria">Ingeniería</option>
+            <option value="programacion">Programación</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Creditos">Créditos:</label>
+        <input asp-for="Creditos" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>¿Es remoto?</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" asp-for="Remoto" value="true" id="remotoSi" required />
+            <label class="form-check-label" for="remotoSi">Sí</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" asp-for="Remoto" value="false" id="remotoNo" required />
+            <label class="form-check-label" for="remotoNo">No</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" asp-for="Material" id="materialCheckbox"  />
+            <label class="form-check-label" for="materialCheckbox">¿Tiene material?</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" asp-for="Videos" id="videosCheckbox"  />
+            <label class="form-check-label" for="videosCheckbox">¿Tiene videos?</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Hora de Inicio:</label>
+        <input asp-for="HoraInicio" type="time" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>Hora de Fin:</label>
+        <input asp-for="HoraFin" type="time" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Crear Curso</button>
+</form>
+
+
+<h1>@ViewData["Message"]</h1>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
